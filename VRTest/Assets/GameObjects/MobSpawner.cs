@@ -16,7 +16,7 @@ public class MobSpawner : MonoBehaviour {
 
     void Start()
     {
-        mobPrefab = Resources.Load<GameObject>("Mob/Mob");
+        mobPrefab = Resources.Load<GameObject>("Mob/Mob3");
 
         StartCoroutine(SpawnFunc());
     }
@@ -25,7 +25,7 @@ public class MobSpawner : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
 
             var mob = Instantiate(mobPrefab);
             var mobBaseComp = mob.GetComponent<MobBase>();

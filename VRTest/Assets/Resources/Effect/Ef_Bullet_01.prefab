@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012236321246}
+  m_RootGameObject: {fileID: 1000011556192064}
   m_IsPrefabParent: 1
---- !u!1 &1000012236321246
+--- !u!1 &1000011556192064
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4000012529707574}
-  - component: {fileID: 198000010954990942}
-  - component: {fileID: 199000010917630434}
+  - component: {fileID: 4000012548580594}
+  - component: {fileID: 198000014198617618}
+  - component: {fileID: 199000010506556180}
   m_Layer: 0
   m_Name: Ef_Bullet_01
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000012529707574
+--- !u!4 &4000012548580594
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012236321246}
+  m_GameObject: {fileID: 1000011556192064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.19, y: 0, z: 21.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,12 +41,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &198000010954990942
+--- !u!198 &198000014198617618
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012236321246}
+  m_GameObject: {fileID: 1000011556192064}
   serializedVersion: 5
   lengthInSec: 1
   simulationSpeed: 1
@@ -96,7 +96,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1018811465
+  randomSeed: -175125492
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2648,13 +2648,13 @@ ParticleSystem:
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
---- !u!199 &199000010917630434
+--- !u!199 &199000010506556180
 ParticleSystemRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012236321246}
+  m_GameObject: {fileID: 1000011556192064}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

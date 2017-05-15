@@ -6,12 +6,12 @@ using NewtonVR;
 
 public class DeploymentOverlay : MonoBehaviour {
     public GameObject towerPrefab;
-    public Material material;
 
     private NVRHand hand;
     private bool insideBoard;
     private bool grab;
 
+    private GameObject thumbnail;
     private GameObject rangeIndicator;
     private LineRenderer lineRenderer;
     private Tile currentTile;
@@ -20,9 +20,11 @@ public class DeploymentOverlay : MonoBehaviour {
         insideBoard = false;
         grab = true;
 
-        material = new Material(material); // make clone
-        GetComponentInChildren<MeshRenderer>().material = material;
-        material.SetFloat("_Opacity", 0.65f);
+        thumbnail = Instantiate(towerPrefab);
+        thumbnail.GetComponent<TowerBase>().prewview = true;
+        thumbnail.transform.SetParent(transform);
+        thumbnail.transform.localPosition = Vector3.zero;
+        thumbnail.SetOpacity(0.5f);
 
         var range = towerPrefab.GetComponent<TowerBase>().range;
         rangeIndicator = transform.FindChild("Range").gameObject;
@@ -36,6 +38,9 @@ public class DeploymentOverlay : MonoBehaviour {
     }
     void Update()
     {
+        if (grab)
+            thumbnail.transform.localPosition = Vector3.zero;
+
         if (insideBoard == false) return;
 
         currentTile = GameBoard.instance.GetTileFromPosition(transform.position);
@@ -61,7 +66,8 @@ public class DeploymentOverlay : MonoBehaviour {
     {
         grab = false;
 
-        if (insideBoard && currentTile.type == TileType.Normal)
+        if (insideBoard &&
+            currentTile != null && currentTile.type == TileType.Normal)
         {
             var tower = GameBoard.instance.AddObject(towerPrefab);
             var boardXY = tower.GetComponent<BoardObject>();
@@ -98,7 +104,7 @@ public class DeploymentOverlay : MonoBehaviour {
         insideBoard = false;
         lineRenderer.enabled = false;
         GameBoard.instance.UnhighlightTile();
-        StartCoroutine(ScaleFunc(2.0f));
+        StartCoroutine(ScaleFunc(3.0f));
 
         rangeIndicator.SetActive(false);
     }

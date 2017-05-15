@@ -23,7 +23,6 @@ public class Piece : MonoBehaviour {
 
         overlay.transform.position = NVRPlayer.Instance.RightHand.transform.position;
         overlayComp.towerPrefab = towerPrefab;
-        overlayComp.material = thumbnailMat;
 
         var interactableComp = overlay.GetComponent<NVRInteractableItem>();
 

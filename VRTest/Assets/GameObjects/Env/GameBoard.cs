@@ -83,7 +83,7 @@ public class GameBoard : MonoBehaviour {
     {
         var obj = Instantiate(prefab);
         obj.transform.SetParent(transform);
-        obj.transform.localPosition = new Vector3(0, 0.8f, 0);
+        obj.transform.localPosition = new Vector3(0, 0.0f, 0);
         return obj;
     }
 

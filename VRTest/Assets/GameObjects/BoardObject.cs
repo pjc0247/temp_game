@@ -9,9 +9,6 @@ public class BoardObject : MonoBehaviour {
 	protected virtual void Start () {
         SetPosition2D(x, y);
     }
-	void Update () {
-		
-	}
 
     public Vector2 GetPosition2D()
     {

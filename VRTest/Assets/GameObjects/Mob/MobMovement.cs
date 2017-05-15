@@ -9,12 +9,43 @@ public class MobMovement : MonoBehaviour {
     private BoardObject boardXY;
     private Direction direction;
 
+    private float movementScale = 1.0f;
+
 	void Start () {
         boardXY = gameObject.GetComponent<BoardObject>();
         direction = Direction.Right;
 
         StartCoroutine(MoveFunc());
 	}
+
+    public void SetMovementScale(float f)
+    {
+        movementScale = f;
+    }
+
+    float GetAngleByDirection(float angle, Direction dir)
+    {
+        // 0  / 360 문제
+        if (dir == Direction.Right)
+        {
+            return 0;
+        }
+        if (dir == Direction.Left) return 180;
+        if (dir == Direction.Up)
+        {
+            if (angle >= 0 && angle <= 180)
+                return 90;
+            else 
+                return -270;
+        }
+        if (dir == Direction.Down)
+        {
+            if (angle >= 270 - 90 && angle <= 270 + 90)
+                return 270;
+            else return -90;
+        }
+        return 0;
+    }
 
 	IEnumerator MoveFunc()
     {
@@ -26,23 +57,30 @@ public class MobMovement : MonoBehaviour {
             var y = boardXY.y;
 
             if (direction == Direction.Right)
-                x += step;
+                x += step * movementScale;
             else if (direction == Direction.Left)
-                x -= step;
+                x -= step * movementScale;
             else if (direction == Direction.Up)
-                y -= step;
+                y -= step * movementScale;
             else if (direction == Direction.Down)
-                y += step;
+                y += step * movementScale;
 
             boardXY.SetPosition2D(x, y);
 
             float xp = -0.0f;
             if (direction == Direction.Left)
-                xp = -0.5f;
+                xp = -1.0f;
 
             var ix = Mathf.Max(0, (int)Mathf.Floor(x - xp));
             var iy = Mathf.Max(0, (int)Mathf.Floor(y));
             direction = board[iy, ix];
+
+            var original = transform.rotation.eulerAngles.y;
+            var target = GetAngleByDirection(original, direction);
+
+            //Debug.Log(string.Format("Orig : {0} / Target : {1}", original, target));
+            transform.rotation = 
+                Quaternion.Euler(0, original + (target - original) * 0.25f, 0);
 
             yield return new WaitForSeconds(interval);
         }

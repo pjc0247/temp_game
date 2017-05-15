@@ -57,25 +57,40 @@
      <Compile Include="Assets\OVR\Editor\OVRScreenshotWizard.cs" />
      <Compile Include="Assets\Simple Helvetica\Editor\SimpleHelveticaCustomEditor.cs" />
      <None Include="Assets\Shaders\Texture2D.shader" />
+     <None Include="Assets\VoxelCharacters\ToonShading\Shaders\ToonBasic.shader" />
+     <None Include="Assets\Voxel Turrets\ReadMe.txt" />
      <None Include="Assets\Simple Helvetica\readme.txt" />
      <None Include="Assets\OVR\Editor\AndroidManifest.OVRSubmission.xml" />
      <None Include="Assets\FantasyEnv\Graphical\Characters\Characters Sizes to Slice.txt" />
      <None Include="Assets\VRSampleScenes\Shaders\UnlitTransparentParam.shader" />
      <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />
+     <None Include="Assets\VoxelCharacters\ToonShading\Shaders\Mirror 1.shader" />
      <None Include="Assets\Plugins\Android\Assets\OSIG_Readme.txt" />
      <None Include="Assets\VRSampleScenes\Shaders\UIOverlay.shader" />
+     <None Include="Assets\Pixel Arsenal\Pixel Arsenal - ReadMe.txt" />
+     <None Include="Assets\VoxelCharacters\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
      <None Include="Assets\VRSampleScenes\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
+     <None Include="Assets\Voxel Turrets\Demo\BaseColor.shader" />
      <None Include="Assets\VRSampleScenes\Shaders\SlidingUV.shader" />
+     <None Include="Assets\VoxelCharacters\ToonShading\Shaders\ToonLitOutline.shader" />
+     <None Include="Assets\VoxelCharacters\ToonShading\Shaders\ToonLit.shader" />
      <None Include="Assets\OVR\Resources\Underlay Transparent Occluder.shader" />
      <None Include="Assets\Resources\Map\map1.txt" />
+     <None Include="Assets\Voxel Turrets\Demo\BaseAdditive.shader" />
      <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
      <None Include="Assets\VRSampleScenes\Shaders\SeparableAlpha.shader" />
      <None Include="Assets\VRSampleScenes\Fonts\LICENSE.txt" />
+     <None Include="Assets\Shaders\TransparentShader.shader" />
+     <None Include="Assets\VoxelCars\Readme.txt" />
+     <None Include="Assets\PixelWeatherFX\ParticleScalerReplaced.txt" />
      <None Include="Assets\OVR\Resources\Underlay Impostor.shader" />
      <None Include="Assets\FantasyEnv\Readme.txt" />
      <None Include="Assets\OVR\Plugins\placeholder.txt" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>F:/Github/temp_game/VRTest/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

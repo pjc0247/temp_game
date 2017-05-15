@@ -7,14 +7,38 @@ public class MobBase : BoardObject {
     public MobMovement movement;
     public GameObject deathParticle;
 
-    public int hp = 10;
+    public float hp = 10;
+
+    private Coroutine frostCoro;
 
     void Awake()
     {
         movement = GetComponent<MobMovement>();
     }
 
-    public void Damage(int damage)
+    public void Frost()
+    {
+        if (frostCoro != null)
+            StopCoroutine(frostCoro);
+
+        var renderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in renderers)
+            renderer.material.color = Color.blue;
+
+        movement.SetMovementScale(0.5f);
+        frostCoro = StartCoroutine(FrostFunc());
+    }
+    IEnumerator FrostFunc()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        var renderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (var renderer in renderers)
+            renderer.material.color = Color.white;
+        movement.SetMovementScale(1.0f);
+    }
+
+    public void Damage(float damage)
     {
         hp -= damage;
 
