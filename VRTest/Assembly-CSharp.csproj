@@ -73,6 +73,7 @@
      <Compile Include="Assets\GameObjects\SetOpacityExt.cs" />
      <Compile Include="Assets\GameObjects\Tower\Bullet.cs" />
      <Compile Include="Assets\GameObjects\Tower\BulletTower.cs" />
+     <Compile Include="Assets\GameObjects\Tower\FlameTower.cs" />
      <Compile Include="Assets\GameObjects\Tower\FrostTower.cs" />
      <Compile Include="Assets\GameObjects\Tower\LaserTower.cs" />
      <Compile Include="Assets\GameObjects\Tower\ThunderTower.cs" />

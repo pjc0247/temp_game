@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 4544850058138716}
   - component: {fileID: 114626162261944372}
   - component: {fileID: 114537486866107830}
+  - component: {fileID: 65764780212667496}
   m_Layer: 0
   m_Name: Mob3
   m_TagString: Untagged
@@ -605,7 +606,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949452499445730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.1910763, y: -0.059258938, z: -8.2481575}
+  m_LocalPosition: {x: -6.762234, y: -1.708705, z: -7.503582}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_Children:
   - {fileID: 4324545020239454}
@@ -1359,6 +1360,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1604514964739806}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65764780212667496
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949452499445730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 3, z: 2.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114537486866107830
 MonoBehaviour:
   m_ObjectHideFlags: 1
