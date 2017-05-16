@@ -9,12 +9,15 @@ public class MobBase : BoardObject {
 
     public float hp = 10;
 
+    private GameObject coinParticle;
     private HPBar hpBar;
     private Coroutine frostCoro;
 
     void Awake()
     {
         movement = GetComponent<MobMovement>();
+
+        coinParticle = Resources.Load<GameObject>("Effect/CoinParticle");
 
         var hpBarPrefab = Resources.Load<GameObject>("Mob/HPBar");
         var hpBarObj = Instantiate(hpBarPrefab);
@@ -23,6 +26,8 @@ public class MobBase : BoardObject {
         hpBar = hpBarObj.GetComponent<HPBar>();
         hpBar.maxHp = hp;
         hpBar.SetHP(hp);
+
+        gameObject.SetColor(Color.white);
     }
 
     public void Frost()
@@ -69,6 +74,9 @@ public class MobBase : BoardObject {
     protected virtual void OnDeath()
     {
         var particle = Instantiate(deathParticle);
+        particle.transform.position = transform.position;
+
+        particle = Instantiate(coinParticle);
         particle.transform.position = transform.position;
     }
 }

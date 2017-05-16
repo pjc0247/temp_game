@@ -87,7 +87,7 @@ public class TowerBase : BoardObject {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
-        rangeIndicator.SetActive(true);
+        HandSelection.instance.SelectTower(this);
     }
     void OnTriggerExit(Collider other)
     {
@@ -95,6 +95,15 @@ public class TowerBase : BoardObject {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
+        HandSelection.instance.UnselectTower(this);
+    }
+
+    public void OnSelected()
+    {
+        rangeIndicator.SetActive(true);
+    }
+    public void OnUnselected()
+    {
         rangeIndicator.SetActive(false);
     }
 }

@@ -6,6 +6,9 @@ public class Bullet : MonoBehaviour {
     public GameObject target;
     public GameObject impulsePrefab;
 
+    public MobBase targetMob;
+    public float damage = 0;
+
 	void Start () {
         Destroy(gameObject, 0.5f);
 	}
@@ -22,6 +25,8 @@ public class Bullet : MonoBehaviour {
             particle.transform.position = transform.position;
             Destroy(particle, 1.0f);
             Destroy(gameObject);
+
+            targetMob.Damage(damage);
         }
     }
 }

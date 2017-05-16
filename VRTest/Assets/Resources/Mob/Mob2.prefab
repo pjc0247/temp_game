@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 114139461240975732}
   - component: {fileID: 114075360390228450}
   - component: {fileID: 114378493950942418}
+  - component: {fileID: 65765733827769790}
   m_Layer: 0
   m_Name: Mob2
   m_TagString: Untagged
@@ -362,7 +363,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494218452709858}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -6.8489804, y: 0.08531666, z: -9.930701}
+  m_LocalPosition: {x: -9.989221, y: 3.4845, z: -12.237454}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 4177134448972096}
@@ -482,6 +483,18 @@ Transform:
   m_Father: {fileID: 4177134448972096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65765733827769790
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1494218452709858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 10, z: 7}
+  m_Center: {x: 0, y: 7, z: -1}
 --- !u!95 &95398094939680702
 Animator:
   serializedVersion: 3

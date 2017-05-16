@@ -8,13 +8,34 @@ public class Piece : MonoBehaviour {
     public GameObject towerPrefab;
     public Material thumbnailMat;
 
+    private GameObject infoObject;
+
+    void Awake()
+    {
+        infoObject = transform.FindChild("Info").gameObject;
+        infoObject.SetActive(false);
+    }
 	void Start () {
 		
 	}
 
-    public void OnHover()
+    void OnTriggerEnter(Collider other)
     {
+        if (other.transform.parent == null) return;
+        if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
+            return;
+
+        infoObject.SetActive(true);
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.parent == null) return;
+        if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
+            return;
+
+        infoObject.SetActive(false);
+    }
+
     public void OnGrab()
     {
         var overlayPrefab = Resources.Load<GameObject>("Env/DeploymentOverlay");

@@ -18,7 +18,10 @@ public class BulletTower : TowerBase {
         if (target == null) return;
 
         var bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().target = target.gameObject;
+        var bulletComp = bullet.GetComponent<Bullet>();
+        bulletComp.target = target.gameObject;
+        bulletComp.targetMob = target;
+        bulletComp.damage = attackDamage;
         bullet.transform.position = firePoint.position;
 
         GetComponentInChildren<TurretHeadRotator>().SetHeadTo(
