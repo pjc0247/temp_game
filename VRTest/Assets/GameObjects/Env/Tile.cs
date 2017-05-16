@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour {
+    public Direction direction;
     public TileType type;
     public int x, y;
 
@@ -13,6 +14,16 @@ public class Tile : MonoBehaviour {
         material = GetComponent<MeshRenderer>().material;
 
         SetupTileTexture();
+
+        /* // DebugText
+        var textObj = new GameObject();
+        textObj.transform.SetParent(transform);
+        textObj.transform.localPosition = Vector3.zero;
+        var text = textObj.AddComponent<TextMesh>();
+        text.text = direction.ToString().Substring(0, 1);
+        text.fontSize = 10;
+        text.anchor = TextAnchor.MiddleCenter;
+        */
     }
     void SetupTileTexture()
     {

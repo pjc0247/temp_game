@@ -9,6 +9,7 @@ public class MobMovement : MonoBehaviour {
     private BoardObject boardXY;
     private Direction direction;
 
+    private bool moving = true;
     private float movementScale = 1.0f;
 
 	void Start () {
@@ -47,7 +48,7 @@ public class MobMovement : MonoBehaviour {
         return 0;
     }
 
-	IEnumerator MoveFunc()
+    IEnumerator MoveFunc()
     {
         var board = GameBoard.instance.board;
 
@@ -67,22 +68,51 @@ public class MobMovement : MonoBehaviour {
 
             boardXY.SetPosition2D(x, y);
 
-            float xp = -0.0f;
+            float xp = 0.0f;
+            float xy = 0.0f;
             if (direction == Direction.Left)
-                xp = -1.0f;
+                xp = -0.95f;
+            if (direction == Direction.Up)
+                xy = -0.95f;
 
             var ix = Mathf.Max(0, (int)Mathf.Floor(x - xp));
-            var iy = Mathf.Max(0, (int)Mathf.Floor(y));
+            var iy = Mathf.Max(0, (int)Mathf.Floor(y - xy));
             direction = board[iy, ix];
 
             var original = transform.rotation.eulerAngles.y;
             var target = GetAngleByDirection(original, direction);
 
             //Debug.Log(string.Format("Orig : {0} / Target : {1}", original, target));
-            transform.rotation = 
+            transform.rotation =
                 Quaternion.Euler(0, original + (target - original) * 0.25f, 0);
+
+            if (ix == 5 && iy == 0)
+                ReachToEnd();
 
             yield return new WaitForSeconds(interval);
         }
+    }
+    IEnumerator AscensionFunc()
+    {
+        for (int i = 0; i < 60; i++)
+        {
+            transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                transform.localPosition.y + (1.7f - transform.localPosition.y) * 0.1f,
+                transform.localPosition.z);
+            gameObject.SetOpacity(1.0f - (transform.localPosition.y / 1.7f));
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void ReachToEnd()
+    {
+        GlobalGFX.instance.StartRedOverlay();
+
+        StopAllCoroutines();
+        StartCoroutine(AscensionFunc());
+
+        Destroy(gameObject, 1);
     }
 }

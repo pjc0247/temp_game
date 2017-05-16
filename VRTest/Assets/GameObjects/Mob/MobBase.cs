@@ -8,6 +8,7 @@ public class MobBase : BoardObject {
     public GameObject deathParticle;
 
     public float hp = 10;
+    public int gold = 10;
 
     private GameObject coinParticle;
     private HPBar hpBar;
@@ -22,7 +23,7 @@ public class MobBase : BoardObject {
         var hpBarPrefab = Resources.Load<GameObject>("Mob/HPBar");
         var hpBarObj = Instantiate(hpBarPrefab);
         hpBarObj.transform.SetParent(transform);
-        hpBarObj.transform.localPosition = new Vector3(0, 16, 0);
+        hpBarObj.transform.localPosition = new Vector3(0, 1.2f, 0);
         hpBar = hpBarObj.GetComponent<HPBar>();
         hpBar.maxHp = hp;
         hpBar.SetHP(hp);
@@ -67,6 +68,8 @@ public class MobBase : BoardObject {
         if (hp <= 0)
         {
             OnDeath();
+
+            Wallet.gold += gold;
             DestroyObject(gameObject);
             MobSpawner.instance.mobs.Remove(this);
         }

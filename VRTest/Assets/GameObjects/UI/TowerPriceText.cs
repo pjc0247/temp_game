@@ -15,7 +15,7 @@ public class TowerPriceText : MonoBehaviour {
 
 	void Update () {          
         if (Wallet.gold >= price)
-            text.color = Color.white;
+            text.color = Color.black;
         else
             text.color = Color.red;
 	}

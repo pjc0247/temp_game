@@ -7,6 +7,11 @@ public enum Direction
     Left, Right, Down, Up, X
 }
 
+public class MapMeta
+{
+    public int startX, startY;
+}
+
 public class GameBoard : MonoBehaviour {
     public static GameBoard instance { get; set; }
 
@@ -16,6 +21,7 @@ public class GameBoard : MonoBehaviour {
 
     public GameObject boardMesh;
 
+    public MapMeta meta;
     public Direction[,] board;
     public Tile[,] tiles;
 
@@ -48,6 +54,11 @@ public class GameBoard : MonoBehaviour {
             }
             idx ++;
         }
+
+        text = Resources.Load<TextAsset>("Map/" + name + "_meta").text;
+        meta = new MapMeta();
+        meta.startX = int.Parse(text.Split(' ')[0]);
+        meta.startY = int.Parse(text.Split(' ')[1]);
     }
 
     void Awake()
@@ -67,6 +78,7 @@ public class GameBoard : MonoBehaviour {
                 tile.transform.SetParent(boardMesh.transform);
                 tile.transform.localPosition = new Vector3(i * 0.1f, y, j * 0.1f) - pivot;
                 tileComp.x = i; tileComp.y = j;
+                tileComp.direction = board[j, i];
 
                 if (board[j, i] == Direction.X)
                     tileComp.type = TileType.Normal;

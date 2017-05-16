@@ -5,9 +5,10 @@ using UnityEngine;
 public class FlameTower : TowerBase {
     public Collider flame1, flame2;
 
-    protected override void OnAttack()
+    protected override bool OnAttack()
     {
         var targets = GetTargets();
+        if (targets.Length == 0) return false;
 
         foreach (var target in targets)
         {
@@ -17,5 +18,7 @@ public class FlameTower : TowerBase {
             if (flame2.bounds.Intersects(targetBounds))
                 target.Damage(attackDamage);
         }
+
+        return true;
     }
 }

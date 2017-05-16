@@ -12,6 +12,7 @@ public class MobSpawner : MonoBehaviour {
     private GameObject mobPrefab;
     private int spawnCount = 10;
     private float spawnInterval = 2;
+    private int level = 1;
 
     public MobSpawner()
     {
@@ -29,7 +30,7 @@ public class MobSpawner : MonoBehaviour {
 
     public void StartLevel(int level)
     {
-        mobPrefab = Resources.Load<GameObject>("Mob/Mob2");
+        mobPrefab = Resources.Load<GameObject>("Mob/Mob" + level.ToString());
         spawnCount = 15;
         spawnInterval = 1.1f;
 
@@ -37,6 +38,8 @@ public class MobSpawner : MonoBehaviour {
     }
     IEnumerator SpawnFunc()
     {
+        var boardMeta = GameBoard.instance.meta;
+
         isSpawning = true;
         for (int i=0;i<spawnCount;i++)
         {
@@ -44,7 +47,7 @@ public class MobSpawner : MonoBehaviour {
 
             var mob = Instantiate(mobPrefab);
             var mobBaseComp = mob.GetComponent<MobBase>();
-            mobBaseComp.SetPosition2D(0, 0);
+            mobBaseComp.SetPosition2D(boardMeta.startX, boardMeta.startY);
             mob.transform.SetParent(GameBoard.instance.transform);
             mob.transform.localPosition = new Vector3(0, 0.1f, 0);
 
@@ -56,5 +59,14 @@ public class MobSpawner : MonoBehaviour {
             mobs.Add(mobBaseComp);
         }
         isSpawning = false;
+
+        StartCoroutine(ToNextLevelFunc());
+    }
+
+    IEnumerator ToNextLevelFunc()
+    {
+        yield return new WaitForSeconds(1);
+
+        StartLevel(++level);
     }
 }

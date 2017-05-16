@@ -12,10 +12,10 @@ public class BulletTower : TowerBase {
         bulletPrefab = Resources.Load<GameObject>("Tower/Bullets/RedBullet");
     }
 
-    protected override void OnAttack()
+    protected override bool OnAttack()
     {
         var target = GetTarget();
-        if (target == null) return;
+        if (target == null) return false;
 
         var bullet = Instantiate(bulletPrefab);
         var bulletComp = bullet.GetComponent<Bullet>();
@@ -26,5 +26,7 @@ public class BulletTower : TowerBase {
 
         GetComponentInChildren<TurretHeadRotator>().SetHeadTo(
             target.transform.position + new Vector3(0, 0.4f, 0));
+
+        return true;
     }
 }

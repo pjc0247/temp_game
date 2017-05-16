@@ -16,10 +16,10 @@ public class LaserTower : TowerBase {
         beamParticle = Resources.Load<GameObject>("Effect/LaserTower/RedLaserBeam");
     }
 
-    protected override void OnAttack()
+    protected override bool OnAttack()
     {
         var target = GetTarget();
-        if (target == null) return;
+        if (target == null) return false;
 
         var targetPoint = target.transform.position + new Vector3(0, 0.5f, 0);
 
@@ -44,5 +44,7 @@ public class LaserTower : TowerBase {
         Destroy(particle, 0.15f);
 
         target.Damage(attackDamage);
+
+        return true;
     }
 }

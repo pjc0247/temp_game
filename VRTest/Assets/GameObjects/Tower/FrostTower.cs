@@ -12,10 +12,10 @@ public class FrostTower : TowerBase {
         frostEffectPrefab = Resources.Load<GameObject>("Effect/FrostTower/Frost");
     }
 
-    protected override void OnAttack()
+    protected override bool OnAttack()
     {
         var targets = GetTargets();
-        if (targets.Length == 0) return;
+        if (targets.Length == 0) return false;
 
         foreach (var target in targets)
         {
@@ -30,5 +30,7 @@ public class FrostTower : TowerBase {
         var particle = Instantiate(frostNovaPrefab);
         particle.transform.position = transform.position + new Vector3(0, 0.15f, 0);
         Destroy(particle, 1.0f);
+
+        return true;
     }
 }

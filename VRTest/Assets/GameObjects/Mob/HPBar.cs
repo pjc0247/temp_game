@@ -17,7 +17,6 @@ public class HPBar : MonoBehaviour {
     {
         hp = _hp;
 
-        Debug.Log("Set HP " + _hp);
         bar.transform.localScale = new Vector3(hp / maxHp, 1, 1);
     }
 }

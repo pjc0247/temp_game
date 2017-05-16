@@ -31,7 +31,12 @@ public class TowerBase : BoardObject {
         while (true)
         {
             yield return new WaitForSeconds(attackInterval);
-            OnAttack();
+
+            var result = OnAttack();
+            if (result == false) {
+                while (OnAttack())
+                    yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 
@@ -69,16 +74,18 @@ public class TowerBase : BoardObject {
         return result.ToArray();
     }
 
-    protected virtual void OnAttack()
+    protected virtual bool OnAttack()
     {
         var target = GetTarget();
-        if (target == null) return;
+        if (target == null) return false;
 
         var particle = Instantiate(attackParticle);
         particle.transform.SetParent(target.transform);
         particle.transform.localPosition = Vector3.zero;
 
         target.Damage(attackDamage);
+
+        return true;
     }
 
     void OnTriggerEnter(Collider other)

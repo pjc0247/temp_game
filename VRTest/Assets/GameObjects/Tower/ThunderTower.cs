@@ -13,10 +13,10 @@ public class ThunderTower : TowerBase
         thunderParticle.SetActive(false);
     }
 
-    protected override void OnAttack()
+    protected override bool OnAttack()
     {
         var target = GetTarget();
-        if (target == null) return;
+        if (target == null) return false;
 
         var targetPoint = target.transform.position + new Vector3(0, 0.5f, 0);
 
@@ -27,6 +27,8 @@ public class ThunderTower : TowerBase
         if (idleCoro != null)
             StopCoroutine(idleCoro);
         idleCoro = StartCoroutine(IdleFunc());
+
+        return true;
     }
     IEnumerator IdleFunc()
     {

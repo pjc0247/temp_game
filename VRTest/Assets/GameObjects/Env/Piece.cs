@@ -8,6 +8,8 @@ public class Piece : MonoBehaviour {
     public GameObject towerPrefab;
     public Material thumbnailMat;
 
+    public int price = 100;
+
     private GameObject infoObject;
 
     void Awake()
@@ -38,16 +40,24 @@ public class Piece : MonoBehaviour {
 
     public void OnGrab()
     {
+        if (Wallet.gold < price)
+        {
+            OnNotEnoughGold(); return;
+        }
+
         var overlayPrefab = Resources.Load<GameObject>("Env/DeploymentOverlay");
         var overlay = Instantiate(overlayPrefab);
         var overlayComp = overlay.GetComponent<DeploymentOverlay>();
 
         overlay.transform.position = NVRPlayer.Instance.RightHand.transform.position;
         overlayComp.towerPrefab = towerPrefab;
+        overlayComp.price = price;
 
         var interactableComp = overlay.GetComponent<NVRInteractableItem>();
 
         StartCoroutine(ProcessGrab(interactableComp));
+
+        infoObject.SetActive(false);
     }
 
     IEnumerator ProcessGrab(NVRInteractableItem interactableComp)
@@ -56,5 +66,12 @@ public class Piece : MonoBehaviour {
 
         NVRPlayer.Instance.RightHand.EndInteraction(NVRPlayer.Instance.RightHand.CurrentlyInteracting);
         NVRPlayer.Instance.RightHand.BeginInteraction(interactableComp);
+    }
+
+    void OnNotEnoughGold()
+    {
+        var sfx = Resources.Load<AudioClip>("SE/Cancel1");
+        var audio = gameObject.GetComponent<AudioSource>();
+        audio.PlayOneShot(sfx);
     }
 }

@@ -6,6 +6,7 @@ using NewtonVR;
 
 public class DeploymentOverlay : MonoBehaviour {
     public GameObject towerPrefab;
+    public int price;
 
     private NVRHand hand;
     private bool insideBoard;
@@ -73,6 +74,8 @@ public class DeploymentOverlay : MonoBehaviour {
             var boardXY = tower.GetComponent<BoardObject>();
             boardXY.SetPosition2D(currentTile.x, currentTile.y);
             Destroy(gameObject);
+
+            Wallet.gold -= price;
         }
         else
             Destroy(gameObject, 6);
