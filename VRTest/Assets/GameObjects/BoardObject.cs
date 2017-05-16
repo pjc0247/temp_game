@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardObject : MonoBehaviour {
-    public float x { get; private set; }
-    public float y { get; private set; }
+    public float x = 1;
+    public float y = 1;
 
 	protected virtual void Start () {
         SetPosition2D(x, y);

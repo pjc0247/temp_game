@@ -16,7 +16,7 @@ public class MobSpawner : MonoBehaviour {
 
     void Start()
     {
-        mobPrefab = Resources.Load<GameObject>("Mob/Mob3");
+        mobPrefab = Resources.Load<GameObject>("Mob/Mob2");
 
         StartCoroutine(SpawnFunc());
     }
@@ -29,6 +29,7 @@ public class MobSpawner : MonoBehaviour {
 
             var mob = Instantiate(mobPrefab);
             var mobBaseComp = mob.GetComponent<MobBase>();
+            mobBaseComp.SetPosition2D(0, 0);
             mob.transform.SetParent(GameBoard.instance.transform);
             mob.transform.localPosition = new Vector3(0, 0.1f, 0);
 

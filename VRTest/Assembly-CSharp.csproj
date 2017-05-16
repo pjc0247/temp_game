@@ -65,6 +65,7 @@
      <Compile Include="Assets\GameObjects\Env\PieceBin.cs" />
      <Compile Include="Assets\GameObjects\Env\Tile.cs" />
      <Compile Include="Assets\GameObjects\Env\TileType.cs" />
+     <Compile Include="Assets\GameObjects\Mob\HPBar.cs" />
      <Compile Include="Assets\GameObjects\Mob\MobBase.cs" />
      <Compile Include="Assets\GameObjects\Mob\MobMovement.cs" />
      <Compile Include="Assets\GameObjects\Mob\Waddle.cs" />

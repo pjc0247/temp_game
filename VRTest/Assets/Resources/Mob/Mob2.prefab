@@ -362,7 +362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494218452709858}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.23409224, y: 0.29012012, z: -6.8660564}
+  m_LocalPosition: {x: -6.8489804, y: 0.08531666, z: -9.930701}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 4177134448972096}
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e41422923333740aa6893c33c9b503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  step: 0.15
+  step: 0.35
   interval: 0.25
 --- !u!114 &114139461240975732
 MonoBehaviour:
@@ -536,6 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72783bea7f47b1a4bb8ed95238075e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 1
+  y: 1
   movement: {fileID: 114075360390228450}
   deathParticle: {fileID: 1000010371838440, guid: fa8cba311cceabc41bf26ce59ab25c24,
     type: 2}
