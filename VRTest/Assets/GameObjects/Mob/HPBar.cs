@@ -17,6 +17,11 @@ public class HPBar : MonoBehaviour {
     {
         hp = _hp;
 
+        if (hp == maxHp)
+            bar.SetActive(false);
+        else if (bar.activeSelf == false)
+            bar.SetActive(true);
+
         bar.transform.localScale = new Vector3(hp / maxHp, 1, 1);
     }
 }

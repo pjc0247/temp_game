@@ -47,7 +47,7 @@ public class DeploymentOverlay : MonoBehaviour {
         currentTile = GameBoard.instance.GetTileFromPosition(transform.position);
         GameBoard.instance.HighlightTile(currentTile);
         rangeIndicator.GetComponent<MeshRenderer>().material.SetFloat("_Opacity", 0.3f);
-        rangeIndicator.transform.position = currentTile.transform.position;
+        rangeIndicator.transform.position = currentTile.transform.position + new Vector3(0, 0.01f, 0);
         rangeIndicator.transform.rotation = Quaternion.Euler(90, 0, 0);
 
         lineRenderer.SetPositions(new Vector3[] {
@@ -67,15 +67,24 @@ public class DeploymentOverlay : MonoBehaviour {
     {
         grab = false;
 
-        if (insideBoard &&
-            currentTile != null && currentTile.type == TileType.Normal)
+        if (insideBoard)
         {
-            var tower = GameBoard.instance.AddObject(towerPrefab);
-            var boardXY = tower.GetComponent<BoardObject>();
-            boardXY.SetPosition2D(currentTile.x, currentTile.y);
-            Destroy(gameObject);
+            if (currentTile != null && currentTile.IsBuildable())
+            {
+                currentTile.occupied = true;
 
-            Wallet.gold -= price;
+                var tower = GameBoard.instance.AddObject(towerPrefab);
+                var boardXY = tower.GetComponent<BoardObject>();
+                boardXY.SetPosition2D(currentTile.x, currentTile.y);
+                Destroy(gameObject);
+
+                Wallet.gold -= price;
+            }
+            else
+            {
+                SE.Play(Resources.Load<AudioClip>("SE/ErrorSE"));
+                Destroy(gameObject);
+            }
         }
         else
             Destroy(gameObject, 6);

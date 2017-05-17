@@ -30,13 +30,13 @@ public class TowerBase : BoardObject {
     {
         while (true)
         {
-            yield return new WaitForSeconds(attackInterval);
-
             var result = OnAttack();
             if (result == false) {
                 while (OnAttack())
                     yield return new WaitForSeconds(0.1f);
             }
+
+            yield return new WaitForSeconds(attackInterval);
         }
     }
 

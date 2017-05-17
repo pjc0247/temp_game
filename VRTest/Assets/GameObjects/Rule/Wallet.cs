@@ -5,12 +5,13 @@ using UnityEngine;
 public class Wallet : MonoBehaviour {
     public static int gold = 200;
 
-    public TextMesh goldText;
+    private TextMesh goldText;
 
     void Awake()
     {
+        goldText = transform.FindChild("GoldText")
+            .GetComponent<TextMesh>();
     }
-
     void Update()
     {
         goldText.text = gold.ToString();

@@ -48,7 +48,7 @@ public class MobBase : BoardObject {
     }
     IEnumerator FrostFunc()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.8f);
 
         var renderers = GetComponentsInChildren<MeshRenderer>();
         foreach (var renderer in renderers)

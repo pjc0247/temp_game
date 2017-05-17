@@ -26,10 +26,19 @@ public class GameBoard : MonoBehaviour {
     public Tile[,] tiles;
 
     private Tile highligtedTile;
+    private GameObject walletObject;
+    private GameObject levelNameObject;
 
     public GameBoard()
     {
         instance = this;
+    }
+    void Awake()
+    {
+        walletObject = transform.FindChild("Wallet").gameObject;
+        levelNameObject = transform.FindChild("LevelName").gameObject;
+
+        walletObject.SetActive(false);
     }
 
     void LoadMapfile(string name)
@@ -61,7 +70,7 @@ public class GameBoard : MonoBehaviour {
         meta.startY = int.Parse(text.Split(' ')[1]);
     }
 
-    void Awake()
+    void Start()
     {
         LoadMapfile(mapname);
 
@@ -88,9 +97,22 @@ public class GameBoard : MonoBehaviour {
                 tiles[j, i] = tileComp;
             }
         }
-        
+
+        levelNameObject.GetComponent<SimpleHelvetica>()
+            .Text = mapname;
+        levelNameObject.GetComponent<SimpleHelvetica>()
+            .GenerateText();
     }
     
+    public void StartGame()
+    {
+        instance = this;
+
+        walletObject.SetActive(true);
+
+        MobSpawner.instance.StartLevel(1);
+    }
+
     public GameObject AddObject(GameObject prefab)
     {
         var obj = Instantiate(prefab);

@@ -29,7 +29,7 @@ public class GlobalGFX : MonoBehaviour {
     }
     IEnumerator RedOverlayFunc()
     {
-        var intensity = 2.0f;
+        var intensity = 1.0f;
         for (int i = 0; i < 60; i++)
         {
             overlay.intensity = intensity;

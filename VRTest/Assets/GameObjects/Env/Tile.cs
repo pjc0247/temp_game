@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour {
     public Direction direction;
     public TileType type;
     public int x, y;
+    public bool occupied = false;
 
     private Material material;
 
@@ -35,6 +36,11 @@ public class Tile : MonoBehaviour {
             texture = Resources.Load<Texture2D>("Env/Tileset/TileSet_06");
 
         material.mainTexture = texture;
+    }
+
+    public bool IsBuildable()
+    {
+        return type == TileType.Normal && occupied == false;
     }
 
     public void Highlight()

@@ -75,8 +75,8 @@ public class MobMovement : MonoBehaviour {
             if (direction == Direction.Up)
                 xy = -0.95f;
 
-            var ix = Mathf.Max(0, (int)Mathf.Floor(x - xp));
-            var iy = Mathf.Max(0, (int)Mathf.Floor(y - xy));
+            var ix = Mathf.Max(0, (int)Mathf.Floor(x - xp + 0.001f));
+            var iy = Mathf.Max(0, (int)Mathf.Floor(y - xy + 0.001f));
             direction = board[iy, ix];
 
             var original = transform.rotation.eulerAngles.y;
@@ -86,7 +86,7 @@ public class MobMovement : MonoBehaviour {
             transform.rotation =
                 Quaternion.Euler(0, original + (target - original) * 0.25f, 0);
 
-            if (ix == 5 && iy == 0)
+            if (ix == 9 && iy == 9)
                 ReachToEnd();
 
             yield return new WaitForSeconds(interval);
