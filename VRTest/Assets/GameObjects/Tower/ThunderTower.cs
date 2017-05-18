@@ -19,10 +19,10 @@ public class ThunderTower : TowerBase
         if (target == null) return false;
 
         var targetPoint = target.transform.position + new Vector3(0, 0.5f, 0);
-
         thunderParticle.transform.LookAt(targetPoint);
-
         thunderParticle.SetActive(true);
+
+        target.Damage(attackDamage, DamageType.Undefined);
 
         if (idleCoro != null)
             StopCoroutine(idleCoro);

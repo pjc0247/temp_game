@@ -10,6 +10,8 @@ public class MobBase : BoardObject {
     public float hp = 10;
     public int gold = 10;
 
+    public Vector3 impulse;
+
     private GameObject coinParticle;
     private HPBar hpBar;
     private Coroutine frostCoro;
@@ -60,7 +62,7 @@ public class MobBase : BoardObject {
         movement.SetMovementScale(1.0f);
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, DamageType type)
     {
         hp -= damage;
         hpBar.SetHP(hp);
@@ -70,8 +72,18 @@ public class MobBase : BoardObject {
             OnDeath();
 
             Wallet.gold += gold;
-            DestroyObject(gameObject);
-            MobSpawner.instance.mobs.Remove(this);
+
+            if (type == DamageType.Explosion)
+            {
+                OnDeathByExplosion();
+                RemoveObject(3);
+            }
+            else if (type == DamageType.Bullet)
+            {
+                OnDeathByBullet();
+                RemoveObject(3);
+            }
+            else RemoveObject(0);
         }
     }
     protected virtual void OnDeath()
@@ -81,5 +93,36 @@ public class MobBase : BoardObject {
 
         particle = Instantiate(coinParticle);
         particle.transform.position = transform.position;
+    }
+
+    protected void RemoveObject(float delay)
+    {
+        Destroy(hpBar.gameObject);
+        DisableMovement();
+        Destroy(gameObject, delay);
+        MobSpawner.instance.mobs.Remove(this);
+    }
+    protected void DisableMovement()
+    {
+        movement.enabled = false;
+        movement.StopAllCoroutines();
+
+        var waddle = gameObject.GetComponent<Waddle>();
+        if (waddle != null)
+            Destroy(waddle);
+    }
+
+    protected virtual void OnDeathByBullet()
+    {
+    }
+    protected virtual void OnDeathByExplosion()
+    {
+        var rigidbody = gameObject.AddComponent<Rigidbody>();
+        var angle = Random.Range(0, 359);
+        var xVel = Mathf.Sin(3.14f / 180 * angle) * 1.0f;
+        var yVel = Mathf.Cos(3.14f / 180 * angle) * 1.0f;
+        rigidbody.AddForce(
+            new Vector3(xVel, Random.Range(0.5f, 1.5f), yVel) * 5, ForceMode.Impulse);
+        rigidbody.angularVelocity = new Vector3(xVel, yVel, xVel) * 5;
     }
 }

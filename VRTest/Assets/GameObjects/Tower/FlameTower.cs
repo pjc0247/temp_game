@@ -14,9 +14,9 @@ public class FlameTower : TowerBase {
         {
             var targetBounds = target.GetComponent<BoxCollider>().bounds;
             if (flame1.bounds.Intersects(targetBounds))
-                target.Damage(attackDamage);
+                target.Damage(attackDamage, DamageType.Undefined);
             if (flame2.bounds.Intersects(targetBounds))
-                target.Damage(attackDamage);
+                target.Damage(attackDamage, DamageType.Undefined);
         }
 
         return true;

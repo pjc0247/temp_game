@@ -9,7 +9,11 @@ public class Bullet : MonoBehaviour {
     public MobBase targetMob;
     public float damage = 0;
 
+    private Vector3 initialPosition;
+
 	void Start () {
+        initialPosition = transform.position;
+
         Destroy(gameObject, 0.5f);
 	}
 	void Update () {
@@ -26,7 +30,11 @@ public class Bullet : MonoBehaviour {
             Destroy(particle, 1.0f);
             Destroy(gameObject);
 
-            targetMob.Damage(damage);
+            if (targetMob != null)
+            {
+                targetMob.impulse = (targetPoint - initialPosition).normalized;
+                targetMob.Damage(damage, DamageType.Bullet);
+            }
         }
     }
 }

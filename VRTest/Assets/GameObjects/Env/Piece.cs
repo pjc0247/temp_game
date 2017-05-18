@@ -6,8 +6,8 @@ using NewtonVR;
 
 public class Piece : MonoBehaviour {
     public GameObject towerPrefab;
-    public Material thumbnailMat;
 
+    public bool isTower = true;
     public int price = 100;
 
     private GameObject infoObject;
@@ -45,6 +45,18 @@ public class Piece : MonoBehaviour {
             OnNotEnoughGold(); return;
         }
 
+        NVRInteractableItem interactableComp = null;
+        if (isTower)
+            interactableComp = SpawnDeploymentOverlay();
+        else
+            interactableComp = SpawnSpellWeapon();
+
+        StartCoroutine(ProcessGrab(interactableComp));
+
+        infoObject.SetActive(false);
+    }
+    NVRInteractableItem SpawnDeploymentOverlay()
+    {
         var overlayPrefab = Resources.Load<GameObject>("Env/DeploymentOverlay");
         var overlay = Instantiate(overlayPrefab);
         var overlayComp = overlay.GetComponent<DeploymentOverlay>();
@@ -53,11 +65,15 @@ public class Piece : MonoBehaviour {
         overlayComp.towerPrefab = towerPrefab;
         overlayComp.price = price;
 
-        var interactableComp = overlay.GetComponent<NVRInteractableItem>();
+        return overlay.GetComponent<NVRInteractableItem>();
+    }
+    NVRInteractableItem SpawnSpellWeapon()
+    {
+        var weapon = Instantiate(towerPrefab);
 
-        StartCoroutine(ProcessGrab(interactableComp));
+        weapon.transform.position = NVRPlayer.Instance.RightHand.transform.position;
 
-        infoObject.SetActive(false);
+        return weapon.GetComponent<NVRInteractableItem>();
     }
 
     IEnumerator ProcessGrab(NVRInteractableItem interactableComp)

@@ -85,7 +85,7 @@ public class ParabolicBullet : MonoBehaviour {
             var mobBounds = mob.GetComponent<Collider>().bounds;
 
             if (mobBounds.Intersects(impulseCollider.bounds))
-                mob.Damage(damage);
+                mob.Damage(damage, DamageType.Explosion);
         }
     }
 }

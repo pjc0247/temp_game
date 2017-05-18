@@ -83,7 +83,7 @@ public class TowerBase : BoardObject {
         particle.transform.SetParent(target.transform);
         particle.transform.localPosition = Vector3.zero;
 
-        target.Damage(attackDamage);
+        target.Damage(attackDamage, DamageType.Undefined);
 
         return true;
     }

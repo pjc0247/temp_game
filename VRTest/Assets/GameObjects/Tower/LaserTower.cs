@@ -43,7 +43,7 @@ public class LaserTower : TowerBase {
         line.startWidth = 0.7f; line.endWidth = 0.7f;
         Destroy(particle, 0.15f);
 
-        target.Damage(attackDamage);
+        target.Damage(attackDamage, DamageType.Laser);
 
         return true;
     }

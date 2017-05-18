@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace NewtonVR
 {
@@ -56,8 +57,14 @@ namespace NewtonVR
 
         public virtual void UpdateColliders()
         {
-            Colliders = this.GetComponentsInChildren<Collider>();
-            NVRInteractables.Register(this, Colliders);
+            var colliders = new List<Collider>(this.GetComponentsInChildren<Collider>());
+
+            var collider = GetComponent<Collider>();
+            if (collider != null)
+                colliders.Add(collider);
+
+            Colliders = colliders.ToArray();
+            NVRInteractables.Register(this, colliders.ToArray());
         }
 
         protected virtual bool CheckForDrop()

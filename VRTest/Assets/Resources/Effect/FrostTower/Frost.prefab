@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4082889967647496}
   - component: {fileID: 198135596992510660}
   - component: {fileID: 199683925050323590}
-  - component: {fileID: 82360715496037558}
   - component: {fileID: 114253741320264088}
   m_Layer: 0
   m_Name: Frost
@@ -101,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690786779069378}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.871, z: -0}
+  m_LocalPosition: {x: -10.842937, y: 3.9501004, z: -16.176449}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4503522635562100}
@@ -136,86 +135,6 @@ Transform:
   m_Father: {fileID: 4082889967647496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82360715496037558
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690786779069378}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 372fe338fb9cb5544b50c699b9226b20, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 0.9
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &114253741320264088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27b2ece559e3c5448b22008484455bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
+  time: 2.5
 --- !u!198 &198135596992510660
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -283,12 +202,12 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -873543191
+  randomSeed: -603428595
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 1.2
+      scalar: 2.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -306,7 +225,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.25
+          value: 0.28
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -315,7 +234,7 @@ ParticleSystem:
         m_RotationOrder: 0
       minMaxState: 3
     startSpeed:
-      scalar: 14
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -333,7 +252,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.071428575
+          value: 0.75
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2782,7 +2701,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -613679616
+  randomSeed: 768543308
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2814,7 +2733,7 @@ ParticleSystem:
         m_RotationOrder: 0
       minMaxState: 3
     startSpeed:
-      scalar: 5
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2832,7 +2751,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.8
+          value: 0.5
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5269,7 +5188,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1879114206
+  randomSeed: -814004842
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7804,7 +7723,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -853723115
+  randomSeed: 1352928910
   InitialModule:
     serializedVersion: 3
     enabled: 1
