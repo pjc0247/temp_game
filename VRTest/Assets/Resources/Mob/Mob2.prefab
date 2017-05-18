@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 95398094939680702}
   - component: {fileID: 114139461240975732}
   - component: {fileID: 114075360390228450}
-  - component: {fileID: 114378493950942418}
   - component: {fileID: 65765733827769790}
+  - component: {fileID: 114362321357627128}
   m_Layer: 0
   m_Name: Mob2
   m_TagString: Untagged
@@ -378,7 +378,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494218452709858}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.72201157, y: 0.1, z: -2.2323413}
+  m_LocalPosition: {x: -7.1928253, y: -1.3317189, z: -11.367405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4881802348921078}
@@ -474,7 +474,7 @@ Transform:
   m_GameObject: {fileID: 1654370964952450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 4177134448972096}
   - {fileID: 4519100536320890}
@@ -522,8 +522,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 0.5}
-  m_Center: {x: -0, y: 0.5, z: -0.1}
+  m_Size: {x: 0.25, y: 0.4, z: 0.25}
+  m_Center: {x: -0, y: 0.25, z: -0.05}
 --- !u!95 &95398094939680702
 Animator:
   serializedVersion: 3
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 8
   interval: 0.25
---- !u!114 &114378493950942418
+--- !u!114 &114362321357627128
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -575,16 +575,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1494218452709858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72783bea7f47b1a4bb8ed95238075e83, type: 3}
+  m_Script: {fileID: 11500000, guid: 7600b77facf83ea4e90701c8c0e50483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   x: 1
   y: 1
+  offsetX: 0
+  offsetY: 0
   movement: {fileID: 114075360390228450}
   deathParticle: {fileID: 1000010371838440, guid: fa8cba311cceabc41bf26ce59ab25c24,
     type: 2}
   hp: 10
   gold: 10
+  impulse: {x: 0, y: 0, z: 0}
 --- !u!137 &137164839506769754
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
