@@ -48,7 +48,7 @@ public class RocketAssistance : SpellBase {
             var targetY = Random.Range(-3.5f, 3.5f);
             parabolicComp.target = new Vector3(targetX, 1, targetY);
             parabolicComp.time = 1.5f + Random.Range(0, 1.5f);
-            parabolicComp.height = new Vector3(0, 20, 0);
+            parabolicComp.height = new Vector3(0, 15, 0);
             parabolicComp.damage = 100;
             parabolicComp.impulsePrefab = impulsePrefab;
 

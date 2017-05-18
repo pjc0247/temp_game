@@ -4,25 +4,26 @@ using UnityEngine;
 
 using NewtonVR;
 
-public class Rocket : SpellBase {
-    private GameObject rocketPrefab;
+public class Gun : SpellBase
+{
+    private GameObject bulletPrefab;
     private GameObject impulsePrefab;
 
     private LineRenderer line;
 
     void Awake()
     {
-        rocketPrefab = Resources.Load<GameObject>("Spell/RocketAssistance/Rocket");
-        impulsePrefab = Resources.Load<GameObject>("Spell/Rocket/Impulse");
+        bulletPrefab = Resources.Load<GameObject>("Spell/Gun/Bullet");
+        impulsePrefab = Resources.Load<GameObject>("Spell/Gun/Impulse");
 
-        line = gameObject.GetComponent<LineRenderer>();
+        line = GetComponentInChildren<LineRenderer>();
     }
     protected override void Update()
     {
         base.Update();
 
         var rightHand = NVRPlayer.Instance.RightHand;
-        var endpoint = rightHand.transform.position + rightHand.transform.forward * 10;
+        var endpoint = rightHand.transform.position + rightHand.transform.forward * 15;
 
         RaycastHit hit;
         if (Physics.Raycast(rightHand.transform.position, rightHand.transform.forward, out hit,
@@ -37,24 +38,25 @@ public class Rocket : SpellBase {
         });
     }
 
+    protected override void OnCooldown()
+    {
+        line.enabled = false;
+    }
+    protected override void OnRestored()
+    {
+        line.enabled = true;
+    }
     public override void Cast()
     {
         var rightHand = NVRPlayer.Instance.RightHand;
+        var endpoint = rightHand.transform.position + rightHand.transform.forward * 15;
 
-        var rocket = Instantiate(rocketPrefab);
-
+        var rocket = Instantiate(bulletPrefab);
+        var bulletComp = rocket.AddComponent<ExplosionBullet>();
         rocket.transform.position = rightHand.transform.position;
-        RaycastHit hit;
-        if (Physics.Raycast(rightHand.transform.position, rightHand.transform.forward, out hit,
-            100, LMask.GameBoard, QueryTriggerInteraction.Collide))
-        {
-            var bulletComp = rocket.AddComponent<ParabolicBullet>();
-            bulletComp.target = hit.point;
-            bulletComp.impulsePrefab = impulsePrefab;
-            bulletComp.time = 0.8f;
-            bulletComp.damage = 10;
-            bulletComp.height = new Vector3(0, 3, 0);
-        }
+        bulletComp.target = endpoint;
+        bulletComp.impulsePrefab = impulsePrefab;
+        bulletComp.damage = 2.5f;
     }
     public override void OnEndGrab()
     {

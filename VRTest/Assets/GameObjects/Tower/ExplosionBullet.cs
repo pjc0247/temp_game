@@ -7,41 +7,52 @@ public class ExplosionBullet : MonoBehaviour
     public Vector3 target;
     public GameObject impulsePrefab;
 
-    public float damage = 10;
+    public float damage = 5;
 
+    private SphereCollider bulletCollisder;
     private Vector3 initialPosition;
+    private Vector3 speed;
 
+    void Awake()
+    {
+        bulletCollisder = GetComponent<SphereCollider>();
+    }
     void Start()
     {
         initialPosition = transform.position;
+        speed = (target - initialPosition) / 10;
 
         Destroy(gameObject, 3.5f);
     }
     void Update()
     {
-        var targetPoint = target + new Vector3(0, 0.3f, 0);
+        transform.position += speed;
 
-        transform.position =
-            transform.position + (targetPoint - transform.position) * 0.05f;
+        var hit = false;
+        // APPLY DAMAGE
+        var mobs = new List<MobBase>(MobSpawner.instance.mobs);
+        foreach (var mob in mobs)
+        {
+            var mobBounds = mob.GetComponent<Collider>().bounds;
 
-        var dist = Vector3.Distance(targetPoint, transform.position);
-        if (dist <= 0.5f)
+            if (mobBounds.Intersects(bulletCollisder.bounds))
+            {
+                mob.impulse = (target - initialPosition).normalized;
+                mob.playDeathParticle = false;
+                mob.Damage(damage, DamageType.Bullet);
+
+                hit = true;
+            }
+        }
+
+        var dist = Vector3.Distance(target, transform.position);
+        if (hit || dist <= 0.5f)
         {
             var particle = Instantiate(impulsePrefab);
-            var impulseCollider = particle.GetComponent<SphereCollider>();
             particle.transform.position = transform.position;
+
             Destroy(particle, 2.0f);
             Destroy(gameObject);
-
-            // APPLY DAMAGE
-            var mobs = new List<MobBase>(MobSpawner.instance.mobs);
-            foreach (var mob in mobs)
-            {
-                var mobBounds = mob.GetComponent<Collider>().bounds;
-
-                if (mobBounds.Intersects(impulseCollider.bounds))
-                    mob.Damage(damage, DamageType.Explosion);
-            }
         }
     }
 }

@@ -25,10 +25,25 @@ public class SpellBase : MonoBehaviour {
     IEnumerator ReloadFunc()
     {
         canFire = false;
+        OnCooldown();
 
         yield return new WaitForSeconds(interval);
 
         canFire = true;
+        OnRestored();
+    }
+
+    /// <summary>
+    /// 쿨타임 상태가 되어 쏠 수 없을 때 호출되는 콜백
+    /// </summary>
+    protected virtual void OnCooldown()
+    {
+    }
+    /// <summary>
+    /// 다시 발사 가능할 때 호출되는 함수
+    /// </summary>
+    protected virtual void OnRestored()
+    {
     }
 
     public virtual void Cast()

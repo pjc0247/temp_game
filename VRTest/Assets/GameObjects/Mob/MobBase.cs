@@ -11,6 +11,7 @@ public class MobBase : BoardObject {
     public int gold = 10;
 
     public Vector3 impulse;
+    public bool playDeathParticle = true;
 
     private GameObject coinParticle;
     private HPBar hpBar;
@@ -88,11 +89,14 @@ public class MobBase : BoardObject {
     }
     protected virtual void OnDeath()
     {
-        var particle = Instantiate(deathParticle);
-        particle.transform.position = transform.position;
+        if (playDeathParticle)
+        {
+            var particle = Instantiate(deathParticle);
+            particle.transform.position = transform.position;
+        }
 
-        particle = Instantiate(coinParticle);
-        particle.transform.position = transform.position;
+        var coinParticle = Instantiate(this.coinParticle);
+        coinParticle.transform.position = transform.position;
     }
 
     protected void RemoveObject(float delay)
