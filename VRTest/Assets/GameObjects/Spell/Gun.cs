@@ -11,8 +11,10 @@ public class Gun : SpellBase
 
     private LineRenderer line;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         bulletPrefab = Resources.Load<GameObject>("Spell/Gun/Bullet");
         impulsePrefab = Resources.Load<GameObject>("Spell/Gun/Impulse");
 
@@ -57,6 +59,9 @@ public class Gun : SpellBase
         bulletComp.target = endpoint;
         bulletComp.impulsePrefab = impulsePrefab;
         bulletComp.damage = 2.5f;
+
+        rightHand.LongHapticPulse(0.1f);
+        //rightHand.TriggerHapticPulse(2000);
     }
     public override void OnEndGrab()
     {

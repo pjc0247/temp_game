@@ -10,12 +10,14 @@ public class Rocket : SpellBase {
 
     private LineRenderer line;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         rocketPrefab = Resources.Load<GameObject>("Spell/RocketAssistance/Rocket");
         impulsePrefab = Resources.Load<GameObject>("Spell/Rocket/Impulse");
 
-        line = gameObject.GetComponent<LineRenderer>();
+        line = GetComponentInChildren<LineRenderer>();
     }
     protected override void Update()
     {

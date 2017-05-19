@@ -181,7 +181,7 @@ namespace NewtonVR
 
         private IEnumerator DoHapticPulse(ushort durationMicroSec)
         {
-            OVRInput.SetControllerVibration(0.2f, 0.2f, Controller);    //Should we allow setting strength
+            OVRInput.SetControllerVibration(0.2f, 1.0f, Controller);    //Should we allow setting strength
             float endTime = Time.time + ((float)durationMicroSec / 1000000);
             do
             {

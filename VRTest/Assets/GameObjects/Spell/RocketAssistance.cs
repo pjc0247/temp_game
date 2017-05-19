@@ -10,8 +10,10 @@ public class RocketAssistance : SpellBase {
 
     private GameObject switchObject;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         rocketPrefab = Resources.Load<GameObject>("Spell/RocketAssistance/Rocket");
         impulsePrefab = Resources.Load<GameObject>("Spell/RocketAssistance/Impulse");
 

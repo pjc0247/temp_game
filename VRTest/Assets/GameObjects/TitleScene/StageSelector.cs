@@ -27,7 +27,7 @@ public class StageSelector : MonoBehaviour {
         StartCoroutine(MovePlayerFunc(new Vector3(0, -15.74f, -8.98f)));
     }
 
-    void CreateBoards()
+    void CreateBoards() 
     {
         previews = new GameObject[3];
         for (int i = 0; i < 3; i++)

@@ -8,7 +8,21 @@ public class SpellBase : MonoBehaviour {
     /// <summary>발사 사이 간격 (쿨타임)</summary>
     public float interval = 0.5f;
 
+    public TextMesh ammoText;
+    public int maxAmmo = 10;
+
+    protected int currentAmmo;
+
+    private NVRHand hand;
     private bool canFire = true;
+
+    protected virtual void Awake()
+    {
+        currentAmmo = maxAmmo;
+
+        if (ammoText != null)
+            ammoText.text = currentAmmo.ToString();
+    }
 
     protected virtual void Update()
     {
@@ -19,7 +33,11 @@ public class SpellBase : MonoBehaviour {
         if (rightHand.UseButtonPressed)
         {
             Cast();
-            StartCoroutine(ReloadFunc());
+
+            if (interval > 0.0f)
+                StartCoroutine(ReloadFunc());
+
+            DecreaseAmmo();  
         } 
     }
     IEnumerator ReloadFunc()
@@ -31,6 +49,26 @@ public class SpellBase : MonoBehaviour {
 
         canFire = true;
         OnRestored();
+    }
+
+    protected void DecreaseAmmo()
+    {
+        currentAmmo -= 1;
+        if (ammoText != null)
+            ammoText.text = currentAmmo.ToString();
+
+        if (currentAmmo == 0)
+        {
+            OnOutOfAmmo();
+            hand.EndInteraction(GetComponent<NVRInteractableItem>());
+        }
+    }
+
+    /// <summary>
+    /// 총알 다 쓰면 호출되는 콜백
+    /// </summary>
+    protected virtual void OnOutOfAmmo()
+    {
     }
 
     /// <summary>
@@ -52,10 +90,13 @@ public class SpellBase : MonoBehaviour {
     }
     public virtual void OnBeginGrab()
     {
-
+        hand = GetComponent<NVRInteractableItem>().AttachedHand;
+        hand.SetVisibility(VisibilityLevel.Invisible);
     }
     public virtual void OnEndGrab()
     {
+        hand.SetVisibility(VisibilityLevel.Visible);
+
         Destroy(this);
         Destroy(gameObject, 3);
     }
