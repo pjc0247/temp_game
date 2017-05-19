@@ -56,6 +56,17 @@ public class DeploymentOverlay : MonoBehaviour {
         });
     }
 
+    void Deploy()
+    {
+        currentTile.occupied = true;
+
+        var tower = GameBoard.instance.AddObject(towerPrefab);
+        var boardXY = tower.GetComponent<BoardObject>();
+        boardXY.SetPosition2D(currentTile.x, currentTile.y);
+
+        Wallet.gold -= price;
+    }
+
     public void OnGrab()
     {
         grab = true;
@@ -70,24 +81,14 @@ public class DeploymentOverlay : MonoBehaviour {
         if (insideBoard)
         {
             if (currentTile != null && currentTile.IsBuildable())
-            {
-                currentTile.occupied = true;
-
-                var tower = GameBoard.instance.AddObject(towerPrefab);
-                var boardXY = tower.GetComponent<BoardObject>();
-                boardXY.SetPosition2D(currentTile.x, currentTile.y);
-                Destroy(gameObject);
-
-                Wallet.gold -= price;
-            }
+                Deploy();
             else
-            {
                 SE.Play(Resources.Load<AudioClip>("SE/ErrorSE"));
-                Destroy(gameObject);
-            }
+
+            Destroy(gameObject);
         }
         else
-            Destroy(gameObject, 6);
+            Destroy(gameObject, 6); // 던지기 효과를 위해 늦게 지움
 
         hand.SetVisibility(VisibilityLevel.Visible);
         insideBoard = false;

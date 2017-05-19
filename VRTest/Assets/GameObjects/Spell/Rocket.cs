@@ -32,7 +32,7 @@ public class Rocket : SpellBase {
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        line.SetPositions(new Vector3[] {
+        line.SetPositions(new Vector3[] {  
             rightHand.transform.position, endpoint
         });
     }

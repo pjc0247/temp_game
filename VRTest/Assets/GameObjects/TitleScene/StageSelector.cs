@@ -83,7 +83,7 @@ public class StageSelector : MonoBehaviour {
         SE.Play(Resources.Load<AudioClip>("SE/Item3"));
 
         StartCoroutine(CreatePieceBinFunc());
-        StartCoroutine(MovePlayerFunc(new Vector3(5.38f, -15.74f, -8.98f)));
+        StartCoroutine(MovePlayerFunc(new Vector3(5.38f, -13.74f, -8.98f)));
         board.GetComponent<GameBoard>().StartGame();
     }
 }

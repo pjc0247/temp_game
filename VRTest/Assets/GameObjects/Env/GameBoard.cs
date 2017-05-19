@@ -110,7 +110,7 @@ public class GameBoard : MonoBehaviour {
 
         walletObject.SetActive(true);
 
-        MobSpawner.instance.StartLevel(1);
+        MobSpawner.instance.StartLevel(0);
     }
 
     public GameObject AddObject(GameObject prefab)
