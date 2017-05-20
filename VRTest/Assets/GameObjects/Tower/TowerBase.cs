@@ -94,6 +94,7 @@ public class TowerBase : BoardObject {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
+        TowerViewCamera.instance.SetTarget(this);
         HandSelection.instance.SelectTower(this);
     }
     void OnTriggerExit(Collider other)

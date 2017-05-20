@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 33969786533861572}
   - component: {fileID: 23773457534030916}
   - component: {fileID: 114899338424932718}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338318585684460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.297726, y: 11.101528, z: -26.924568}
+  m_LocalPosition: {x: -4.940213, y: -1.2942758, z: -9.340228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4824696497177298}
@@ -401,6 +401,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 3
   y: 3
+  offsetX: 0
+  offsetY: 0
   prewview: 0
   attackInterval: 2
   attackDamage: 5
