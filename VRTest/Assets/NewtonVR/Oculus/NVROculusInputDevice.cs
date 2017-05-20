@@ -174,14 +174,14 @@ namespace NewtonVR
                 return OVRInput.Get(GetNearTouchMap(button), Controller);
         }
 
-        public override void TriggerHapticPulse(ushort durationMicroSec = 500, NVRButtons button = NVRButtons.Touchpad)
+        public override void TriggerHapticPulse(ushort durationMicroSec = 500, float strength = 1.0f, NVRButtons button = NVRButtons.Touchpad)
         {
-                StartCoroutine(DoHapticPulse(durationMicroSec));
+                StartCoroutine(DoHapticPulse(durationMicroSec, strength));
         }
 
-        private IEnumerator DoHapticPulse(ushort durationMicroSec)
+        private IEnumerator DoHapticPulse(ushort durationMicroSec, float strength)
         {
-            OVRInput.SetControllerVibration(0.2f, 1.0f, Controller);    //Should we allow setting strength
+            OVRInput.SetControllerVibration(0.2f, strength, Controller);    //Should we allow setting strength
             float endTime = Time.time + ((float)durationMicroSec / 1000000);
             do
             {

@@ -28,6 +28,7 @@ public class Piece : MonoBehaviour {
             return;
 
         EnableHoveringEffects();
+        UIEffect.PlayHoverHaptic();
     }
     void OnTriggerExit(Collider other)
     {

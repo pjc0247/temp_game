@@ -28,7 +28,7 @@ namespace NewtonVR
 
         public abstract string GetDeviceName();
 
-        public abstract void TriggerHapticPulse(ushort durationMicroSec = 500, NVRButtons button = NVRButtons.Touchpad);
+        public abstract void TriggerHapticPulse(ushort durationMicroSec = 500, float strength = 1.0f, NVRButtons button = NVRButtons.Touchpad);
 
         public abstract float GetAxis1D(NVRButtons button);
         public abstract Vector2 GetAxis2D(NVRButtons button);

@@ -14,7 +14,7 @@ public class TowerViewCamera : MonoBehaviour {
     }
     void Awake()
     {
-        canvas = transform.FindChild("TowerInfoCanvas").gameObject;
+        canvas = transform.FindChild("Canvas").gameObject;
 
         cam = GetComponentInChildren<Camera>();
         cam.cullingMask = ~(LMask.VRHand | LMask.UI);

@@ -433,13 +433,13 @@ namespace NewtonVR
             }
         }
 
-        public void TriggerHapticPulse(ushort durationMicroSec = 500, NVRButtons button = NVRButtons.Grip)
+        public void TriggerHapticPulse(ushort durationMicroSec = 500, float strength = 1.0f, NVRButtons button = NVRButtons.Grip)
         {
             if (InputDevice != null)
             {
                 if (durationMicroSec < 3000)
                 {
-                    InputDevice.TriggerHapticPulse(durationMicroSec, button);
+                    InputDevice.TriggerHapticPulse(durationMicroSec, strength, button);
                 }
                 else
                 {
@@ -448,18 +448,18 @@ namespace NewtonVR
             }
         }
 
-        public void LongHapticPulse(float seconds, NVRButtons button = NVRButtons.Grip)
+        public void LongHapticPulse(float seconds, float strength = 1.0f, NVRButtons button = NVRButtons.Grip)
         {
-            StartCoroutine(DoLongHapticPulse(seconds, button));
+            StartCoroutine(DoLongHapticPulse(seconds, strength, button));
         }
 
-        private IEnumerator DoLongHapticPulse(float seconds, NVRButtons button)
+        private IEnumerator DoLongHapticPulse(float seconds, float strength, NVRButtons button)
         {
             float startTime = Time.time;
             float endTime = startTime + seconds;
             while (Time.time < endTime)
             {
-                TriggerHapticPulse(100, button);
+                TriggerHapticPulse(100, strength, button);
                 yield return null;
             }
         }

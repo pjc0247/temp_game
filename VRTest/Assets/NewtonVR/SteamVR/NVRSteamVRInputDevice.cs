@@ -149,7 +149,7 @@ namespace NewtonVR
             return false;
         }
 
-        public override void TriggerHapticPulse(ushort durationMicroSec = 500, NVRButtons button = NVRButtons.Touchpad)
+        public override void TriggerHapticPulse(ushort durationMicroSec = 500, float strength = 1.0f, NVRButtons button = NVRButtons.Touchpad)
         {
             if (Controller != null)
             {
@@ -534,7 +534,7 @@ namespace NewtonVR
             return null;
         }
 
-        public override void TriggerHapticPulse(ushort durationMicroSec = 500, NVRButtons button = NVRButtons.Touchpad)
+        public override void TriggerHapticPulse(ushort durationMicroSec = 500, float strength = 1.0f, NVRButtons button = NVRButtons.Touchpad)
         {
             PrintNotEnabledError();
         }

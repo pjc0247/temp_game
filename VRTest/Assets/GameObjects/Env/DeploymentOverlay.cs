@@ -12,11 +12,16 @@ public class DeploymentOverlay : MonoBehaviour {
     private bool insideBoard;
     private bool grab;
 
+    private GameObject deployParticlePrefab;
     private GameObject thumbnail;
     private GameObject rangeIndicator;
     private LineRenderer lineRenderer;
     private Tile currentTile;
 
+    void Awake()
+    {
+        deployParticlePrefab = Resources.Load<GameObject>("Effect/DeployParticle");
+    }
 	void Start () {
         insideBoard = false;
         grab = true;
@@ -36,6 +41,8 @@ public class DeploymentOverlay : MonoBehaviour {
         lineRenderer.startWidth = 0.3f;
         lineRenderer.endColor = Color.black;
         lineRenderer.endWidth = 0.01f;
+
+        UIEffect.StartGrabHaptic();
     }
     void Update()
     {
@@ -63,6 +70,9 @@ public class DeploymentOverlay : MonoBehaviour {
         var tower = GameBoard.instance.AddObject(towerPrefab);
         var boardXY = tower.GetComponent<BoardObject>();
         boardXY.SetPosition2D(currentTile.x, currentTile.y);
+
+        var particle = Instantiate(deployParticlePrefab);
+        particle.transform.position = tower.transform.position;
 
         Wallet.gold -= price;
     }
@@ -95,6 +105,8 @@ public class DeploymentOverlay : MonoBehaviour {
         GameBoard.instance.UnhighlightTile();
         lineRenderer.enabled = false;
         rangeIndicator.SetActive(false);
+
+        UIEffect.StopGrabHaptic();
     }
 
     void OnTriggerEnter(Collider other)

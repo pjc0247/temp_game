@@ -94,7 +94,7 @@ public class TowerBase : BoardObject {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
-        TowerViewCamera.instance.SetTarget(this);
+        TowerPanel.instance.SetTarget(this);
         HandSelection.instance.SelectTower(this);
     }
     void OnTriggerExit(Collider other)
@@ -103,6 +103,7 @@ public class TowerBase : BoardObject {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
+        TowerPanel.instance.ClearTarget();
         HandSelection.instance.UnselectTower(this);
     }
 
