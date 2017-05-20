@@ -27,7 +27,7 @@ public class Piece : MonoBehaviour {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
-        infoObject.SetActive(true);
+        EnableHoveringEffects();
     }
     void OnTriggerExit(Collider other)
     {
@@ -35,7 +35,7 @@ public class Piece : MonoBehaviour {
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
 
-        infoObject.SetActive(false);
+        DisableHoveringEffects();   
     }
 
     public void OnGrab()
@@ -53,8 +53,26 @@ public class Piece : MonoBehaviour {
 
         StartCoroutine(ProcessGrab(interactableComp));
 
-        infoObject.SetActive(false);
+        DisableHoveringEffects();
     }
+
+    void EnableHoveringEffects()
+    {
+        PieceBin.instance.EnableSpotlight(this);
+        infoObject.SetActive(true);
+        var movie = infoObject.GetComponentInChildren<PlayMovie_UI>();
+        if (movie != null)
+            movie.PlayFromStart();
+    }
+    void DisableHoveringEffects()
+    {
+        PieceBin.instance.DisableSpotlight();
+        infoObject.SetActive(false);
+        var movie = infoObject.GetComponentInChildren<PlayMovie_UI>();
+        if (movie != null)
+            movie.Stop();
+    }
+
     NVRInteractableItem SpawnDeploymentOverlay()
     {
         var overlayPrefab = Resources.Load<GameObject>("Env/DeploymentOverlay");

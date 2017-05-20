@@ -11,6 +11,8 @@ namespace NewtonVR
         public bool GeometryBlocksLaser = true;
         public LayerMask LayersThatBlockLaser = Physics.AllLayers;
 
+        public GameObject ClickParticle;
+
         public Sprite CursorSprite;
         public Material CursorMaterial;
         public Material LaserMaterial;
@@ -206,6 +208,15 @@ namespace NewtonVR
             if (ExecuteEvents.GetEventHandler<ISelectHandler>(go))
             {
                 base.eventSystem.SetSelectedGameObject(go);
+            }
+
+            if (ClickParticle != null)
+            {
+                var particle = Instantiate(ClickParticle);
+
+                var diff = -(Camera.main.transform.position - go.transform.position).normalized;
+
+                particle.transform.position = go.transform.position - diff * 1;
             }
         }
         
