@@ -13,6 +13,7 @@ namespace NewtonVR
 
         public Sprite CursorSprite;
         public Material CursorMaterial;
+        public Material LaserMaterial;
         public float NormalCursorScale = 0.05f;
 
         public bool LaserEnabled = true;
@@ -75,7 +76,7 @@ namespace NewtonVR
                     if (LaserEnabled == true)
                     {
                         Lasers[index] = cursor.AddComponent<LineRenderer>();
-                        Lasers[index].material = new Material(Shader.Find("Standard"));
+                        Lasers[index].material = LaserMaterial;
                         Lasers[index].material.color = LaserColor;
                         NVRHelpers.LineRendererSetColor(Lasers[index], LaserColor, LaserColor);
                         NVRHelpers.LineRendererSetWidth(Lasers[index], LaserStartWidth, LaserEndWidth);
