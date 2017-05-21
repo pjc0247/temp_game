@@ -146,7 +146,12 @@ public class GameBoard : MonoBehaviour {
     public Tile GetTileFromPosition(Vector3 position)
     {
         var relative = position - transform.position;
+        var x = (int)Mathf.Floor(relative.z + 5);
+        var y = (int)Mathf.Floor(relative.x + 5);
 
-        return tiles[(int)Mathf.Floor(relative.z + 5), (int)Mathf.Floor(relative.x + 5)];
+        x = Mathf.Clamp(x, 0, GameBoard.instance.width-1);
+        y = Mathf.Clamp(y, 0, GameBoard.instance.height-1);
+
+        return tiles[x, y];
     }
 }
