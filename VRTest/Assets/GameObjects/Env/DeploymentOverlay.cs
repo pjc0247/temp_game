@@ -27,7 +27,7 @@ public class DeploymentOverlay : MonoBehaviour {
         grab = true;
 
         thumbnail = Instantiate(towerPrefab);
-        thumbnail.GetComponent<TowerBase>().prewview = true;
+        thumbnail.GetComponent<TowerBase>().preview = true;
         thumbnail.transform.SetParent(transform);
         thumbnail.transform.localPosition = Vector3.zero;
         thumbnail.SetOpacity(0.5f);
@@ -63,6 +63,9 @@ public class DeploymentOverlay : MonoBehaviour {
         });
     }
 
+    /// <summary>
+    /// 타워를 보드에 실제로 배치한다
+    /// </summary>
     void Deploy()
     {
         currentTile.occupied = true;

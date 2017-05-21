@@ -8,6 +8,8 @@ namespace NewtonVR
 {
     public class NVRCanvasInput : BaseInputModule
     {
+        public static NVRCanvasInput Instance;
+
         public bool GeometryBlocksLaser = true;
         public LayerMask LayersThatBlockLaser = Physics.AllLayers;
 
@@ -38,13 +40,15 @@ namespace NewtonVR
 
         private bool Initialized = false;
         
-        private Camera ControllerCamera;
+        public Camera ControllerCamera;
 
         private NVRPlayer Player;
 
         protected override void Start()
         {
             base.Start();
+
+            Instance = this;
 
             if (Initialized == false)
             {
@@ -99,6 +103,15 @@ namespace NewtonVR
 
                 Initialized = true;
             }
+        }
+
+        public static void RegisterCanvas(GameObject canvas)
+        {
+            canvas.GetComponent<Canvas>().worldCamera = Instance.ControllerCamera;
+        }
+        public static void RegisterCanvas(Canvas canvas)
+        {
+            canvas.worldCamera = Instance.ControllerCamera;
         }
 
         protected IEnumerator DelayedCameraInit()

@@ -70,8 +70,11 @@ public class LevelDesignEditor : EditorWindow {
         {
             EditorGUI.indentLevel++;
 
-            EditorGUILayout.BeginVertical(GUI.skin.box);
+            var boxSkin = new GUIStyle(GUI.skin.box);
+            boxSkin.stretchWidth = true;
+            EditorGUILayout.BeginVertical(boxSkin);
             EditorGUILayout.LabelField("<b>Level " + (item.level+1) + "</b>", skin);
+
             item.spawnAmount = EditorGUILayout.IntField("Amount", item.spawnAmount);
             item.spawnCount = EditorGUILayout.IntField("Count", item.spawnCount);
             item.spawnInterval = EditorGUILayout.FloatField("Interval", item.spawnInterval);

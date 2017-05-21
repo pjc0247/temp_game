@@ -5,7 +5,7 @@ using UnityEngine;
 using NewtonVR;
 
 public class TowerBase : BoardObject {
-    public bool prewview = false;
+    public bool preview = false;
 
     public float attackInterval = 1.0f;
     public float attackDamage = 1.0f;
@@ -22,8 +22,12 @@ public class TowerBase : BoardObject {
         rangeIndicator.transform.localScale = new Vector3(1 + range*2, 1 + range*2, 1 + range*2);
         rangeIndicator.SetActive(false);
 
-        if (prewview == false)
+        if (preview == false)
             StartCoroutine(AttackFunc());
+        else
+        {
+            Destroy(GetComponent<Rigidbody>());
+        }
 	}
 
     IEnumerator AttackFunc()
@@ -90,6 +94,7 @@ public class TowerBase : BoardObject {
 
     void OnTriggerEnter(Collider other)
     {
+        if (preview) return;
         if (other.transform.parent == null) return;
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
@@ -99,6 +104,7 @@ public class TowerBase : BoardObject {
     }
     void OnTriggerExit(Collider other)
     {
+        if (preview) return;
         if (other.transform.parent == null) return;
         if (other.transform.parent.gameObject != NVRPlayer.Instance.RightHand.gameObject)
             return;
@@ -109,10 +115,12 @@ public class TowerBase : BoardObject {
 
     public void OnSelected()
     {
+        Debug.Log("OnSelected " + ToString());
         rangeIndicator.SetActive(true);
     }
     public void OnUnselected()
     {
+        Debug.Log("OnUnselected " + ToString());
         rangeIndicator.SetActive(false);
     }
 }

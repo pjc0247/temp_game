@@ -23,6 +23,8 @@ public class HandSelection : MonoBehaviour {
     public void UnselectTower(TowerBase tower)
     {
         tower.OnUnselected();
-        selected = null;
+
+        if (tower == selected)
+            selected = null;
     }
 }
