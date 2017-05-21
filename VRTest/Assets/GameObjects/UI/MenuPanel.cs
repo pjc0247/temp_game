@@ -6,6 +6,15 @@ using NewtonVR;
 
 public class MenuPanel : MonoBehaviour {
 
+    void Awake()
+    {
+        Time.timeScale = 0;
+    }
+    void OnDestroy()
+    {
+        Time.timeScale = 1;
+    }
+
     public void OnResume()
     {
         Destroy(gameObject);
